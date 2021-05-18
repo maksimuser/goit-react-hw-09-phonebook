@@ -69,6 +69,7 @@ export default function ContactForm() {
           placeholder="Type name"
           value={name}
           onChange={handleChange}
+          autoFocus
         />
       </label>
 

@@ -6,10 +6,10 @@ import { login } from '../redux/auth';
 import styles from './pages.module.scss';
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const dispatch = useDispatch();
 
   const handleChange = evt => {
     const { name, value } = evt.target;
@@ -54,6 +54,7 @@ export default function LoginPage() {
               onChange={handleChange}
               placeholder=" "
               className={styles.form__input}
+              autoFocus
             />
           </label>
         </div>

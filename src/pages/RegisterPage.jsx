@@ -56,6 +56,7 @@ export default function RegisterPage() {
               type="text"
               value={name}
               onChange={handleChange}
+              autoFocus
             />
           </label>
         </div>
