@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-// import { Redirect, Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from 'react-private-public-route';
-// import { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getIsAuthenticated } from './redux/auth';
