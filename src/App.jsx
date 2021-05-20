@@ -28,7 +28,6 @@ const ContactsPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsAuthenticated);
-
   useEffect(() => {
     dispatch(currentUser());
   }, [dispatch]);
