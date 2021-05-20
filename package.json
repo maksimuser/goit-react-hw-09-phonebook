@@ -25,8 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "netlify deploy -p",
-    "prepare": "husky install"
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +46,7 @@
     ]
   },
   "devDependencies": {
-    "husky": "^6.0.0",
+    "husky": "^4.3.8",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0"
   }
