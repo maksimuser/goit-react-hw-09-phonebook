@@ -6,6 +6,7 @@ import {
   loginError,
   logoutSuccess,
   logoutError,
+  getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
 } from '../auth';
@@ -44,9 +45,16 @@ const isAuthenticated = createReducer(false, {
   [logoutSuccess]: () => false,
 });
 
+const loading = createReducer(false, {
+  [getCurrentUserRequest]: () => true,
+  [getCurrentUserSuccess]: () => false,
+  [getCurrentUserError]: () => false,
+});
+
 export const auth = combineReducers({
   user,
   isAuthenticated,
   token,
   error,
+  loading,
 });

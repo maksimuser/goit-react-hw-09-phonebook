@@ -1,13 +1,24 @@
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
+import { useLocation, useHistory } from 'react-router';
 import routes from '../../routes';
 import { getIsAuthenticated } from '../../redux/auth';
 
 import styles from './Navigation.module.scss';
 
-export default function Navigation() {
+function Navigation() {
   const isLoggedIn = useSelector(getIsAuthenticated);
+  const location = useLocation();
+  const history = useHistory();
+  const refPageContacts = useRef(location.pathname);
+
+  // console.log(`history`, history.location);
+  // console.log(`location`, location);
+
+  useEffect(() => {
+    history.push(refPageContacts.current);
+  }, [history]);
 
   return (
     <div>
@@ -25,9 +36,10 @@ export default function Navigation() {
           activeStyle={{ color: 'orange' }}
           to={routes.contacts}
         >
-          Contacts{' '}
+          Contacts
         </NavLink>
       )}
     </div>
   );
 }
+export default Navigation;

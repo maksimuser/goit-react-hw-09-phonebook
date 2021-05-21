@@ -21,6 +21,7 @@ export default function ContactsPage() {
       <div className="Contacts">
         <h2>Contacts</h2>
         <Filter />
+
         <ContactList />
       </div>
     </div>

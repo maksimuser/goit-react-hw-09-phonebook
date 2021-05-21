@@ -1,16 +1,16 @@
-// import { useEffect } from 'react';
-// import { Redirect, Switch } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Redirect, Switch } from 'react-router-dom';
+
 import { PublicRoute, PrivateRoute } from 'react-private-public-route';
 import { Suspense, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Loader from 'react-loader-spinner';
 
-import { getIsAuthenticated } from './redux/auth';
+import { currentUser, getIsAuthenticated } from './redux/auth';
 
 import AppBar from './components/AppBar';
 
 import routes from './routes';
-
-import { currentUser } from './redux/auth';
 
 const HomePage = lazy(() =>
   import('./pages/HomePage' /* webpackChunkName: "HomePage" */),
@@ -28,6 +28,7 @@ const ContactsPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsAuthenticated);
+
   useEffect(() => {
     dispatch(currentUser());
   }, [dispatch]);
@@ -35,9 +36,22 @@ export default function App() {
   return (
     <div>
       <AppBar />
-      <Suspense fallback={<h1>Loading Page...</h1>}>
+      <Suspense
+        fallback={
+          <div className="loader">
+            <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+          </div>
+        }
+      >
         <Switch>
           <PublicRoute exact path={routes.home} component={HomePage} />
+
+          <PrivateRoute
+            isAuthenticated={isLoggedIn}
+            redirect={routes.login}
+            path={routes.contacts}
+            component={ContactsPage}
+          />
 
           <PublicRoute
             restricted={isLoggedIn}
@@ -45,18 +59,14 @@ export default function App() {
             path={routes.login}
             component={LoginPage}
           />
+
           <PublicRoute
             restricted={isLoggedIn}
             redirect={routes.contacts}
             path={routes.register}
             component={RegisterPage}
           />
-          <PrivateRoute
-            isAuthenticated={isLoggedIn}
-            redirect={routes.login}
-            path={routes.contacts}
-            component={ContactsPage}
-          />
+
           <Redirect to={routes.home} />
         </Switch>
       </Suspense>
