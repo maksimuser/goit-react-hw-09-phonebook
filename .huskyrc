@@ -3,9 +3,3 @@
     "pre-commit": "lint-staged"
   }
 }
-
-{
-  "scripts": {
-    "prepare": "husky install"
-  }
-}
