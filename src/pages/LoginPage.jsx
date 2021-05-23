@@ -30,7 +30,9 @@ export default function LoginPage() {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    dispatch(login({ email, password }));
+    const credentials = { email, password };
+
+    dispatch(login(credentials));
 
     resetForm();
   };

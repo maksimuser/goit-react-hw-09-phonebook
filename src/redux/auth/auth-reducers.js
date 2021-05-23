@@ -2,6 +2,7 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import {
   registerSuccess,
   registerError,
+  loginRequest,
   loginSuccess,
   loginError,
   logoutSuccess,
@@ -27,9 +28,11 @@ const token = createReducer(null, {
 });
 
 const setError = (_, { payload }) => payload;
+
 const error = createReducer(null, {
   [registerError]: setError,
   [loginError]: setError,
+  [loginRequest]: () => null,
   [logoutError]: setError,
   [getCurrentUserError]: setError,
 });

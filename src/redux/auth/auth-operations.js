@@ -51,6 +51,8 @@ export const login = credentials => async dispatch => {
     dispatch(loginSuccess(data));
   } catch (error) {
     dispatch(loginError(error.message));
+
+    alert('No such user exists! Try again!');
   }
 };
 
