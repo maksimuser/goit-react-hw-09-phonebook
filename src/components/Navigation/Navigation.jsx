@@ -13,9 +13,6 @@ function Navigation() {
   const history = useHistory();
   const refPageContacts = useRef(location.pathname);
 
-  // console.log(`history`, history.location);
-  // console.log(`location`, location);
-
   useEffect(() => {
     history.push(refPageContacts.current);
   }, [history]);
